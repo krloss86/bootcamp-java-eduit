@@ -40,7 +40,7 @@ public class Carrito {
 		Double precioFinal = 0d;
 		
 		for(Item item : this.items) {
-			precioFinal += item.articulo.precio;
+			precioFinal += item.articulo.getPrecio();
 	    }
 		
 		return precioFinal;
@@ -48,7 +48,7 @@ public class Carrito {
 	
 	void eliminarItem(Item itemAEliminar) {
 		for(Item item : this.items) {
-			if(existeItem(itemAEliminar.articulo.id) ) {
+			if(existeItem(itemAEliminar.articulo.getId()) ) {
 				//crear un vector con un elemento menos de lo que tiene el original
 				copiarItems();
 			}
@@ -68,7 +68,7 @@ public class Carrito {
 	boolean existeItem(Long idArticulo) {
 		boolean existe = false;
 		for(Item item : this.items) {
-			if(item.articulo.id.equals(idArticulo) ) {
+			if(item.articulo.getId().equals(idArticulo) ) {
 				existe = true;
 				break;
 			}

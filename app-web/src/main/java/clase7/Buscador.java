@@ -3,24 +3,24 @@ package clase7;
 public class Buscador {
 
 	//atributos
-	String claveBusqueda;
-	Articulo[] articulos;
-	Integer cantidad;
+	private String claveBusqueda;
+	private Articulo[] articulos;
+	private Integer cantidad;
 	
 	//constructor
-	Buscador() {
+	public Buscador() {
 		claveBusqueda = "";
 		articulos = new Articulo[0];//vector vacio
 		cantidad = 0;
 	}
 	
-	Buscador(String claveBusqueda) {
+	public Buscador(String claveBusqueda) {
 		//this
 		this.claveBusqueda = claveBusqueda;
 	}
 	
 	//metodos
-	void buscar() {
+	public void buscar() {
 		//alguien me da los articulos
 		//sql
 		//excel
@@ -41,22 +41,22 @@ public class Buscador {
 		cantidad = resultados.length;
 	}
 	
-	void mostrarCantidadResultados() {
+	public void mostrarCantidadResultados() {
 		System.out.println("Hemos Encontrado " + this.cantidad +" Resultados Para " +this.claveBusqueda);		
 	}
 	
-	void detalle() {
+	public void detalle() {
 		//¿como recorro los resultados?
 		for(int i=0;i<this.cantidad;i++){
 			//me quedo con el articulo en la posicion i
 			
 			Articulo unArticulo = this.articulos[i];
 			
-			System.out.println(unArticulo.nombre);
-			System.out.println(unArticulo.autor);
+			System.out.println(unArticulo.getNombre());
+			System.out.println(unArticulo.getAutor());
 			//solo mostrar la img si tiene una, ¿como hago?
 			if(unArticulo.tieneImagen()) {//f5
-				System.out.println(unArticulo.urlImagen);
+				System.out.println(unArticulo.getUrlImagen());
 			}else {
 				System.out.println("No tiene, muestro marca de agua");
 			}
@@ -65,5 +65,13 @@ public class Buscador {
 
 	public boolean hayResultados() {		
 		return this.cantidad > 0;
+	}
+	
+	public int getCantidadaArticulos() {
+		int cantidad = 0;
+		if(this.articulos != null) {
+			this.cantidad = this.articulos.length;
+		}
+		return cantidad;
 	}
 }
