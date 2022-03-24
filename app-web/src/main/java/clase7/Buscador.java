@@ -1,5 +1,9 @@
 package clase7;
 
+import clase10.Libro;
+import clase10.Musica;
+import clase10.Pasatiempo;
+
 public class Buscador {
 
 	//atributos
@@ -17,6 +21,7 @@ public class Buscador {
 	public Buscador(String claveBusqueda) {
 		//this
 		this.claveBusqueda = claveBusqueda;
+		articulos = new Articulo[0];//vector vacio
 	}
 	
 	//metodos
@@ -28,11 +33,13 @@ public class Buscador {
 		// Perdir a un servicio los datos (claveBusqueda)
 		//harcode los resultados
 		Articulo[] resultados = new Articulo[3];
-		resultados[0] = new Articulo(1l,"BATMAN (1970) UN CABALLE...","DC COMICS",1540.9d,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689621.jpg");
+		resultados[0] = new Libro(1l,"BATMAN (1970) UN CABALLE...","DC COMICS",1540.9d,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689621.jpg", "1234567890");
 		
-		resultados[1] = new Articulo(2l,"BATMAN (2010) UNA NUEVA LEYENDA", "DC COMICS",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg");
+		String[] temas = {"tema1","tema2"};
+		resultados[1] = new Musica(2l,"BATMAN (2010) UNA NUEVA LEYENDA", "DC COMICS",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg",temas);
+		((Musica)resultados[1]).agregarTema("tema3");
 		
-		resultados[2] = new Articulo(3l,"BATMAN (2000)", "DC COMICS",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg");
+		resultados[2] = new Pasatiempo(3l,"BATMAN (2000)", "DC COMICS",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg","hasbro");
 		
 		this.articulos = resultados;
 		
@@ -52,14 +59,8 @@ public class Buscador {
 			
 			Articulo unArticulo = this.articulos[i];
 			
-			System.out.println(unArticulo.getNombre());
-			System.out.println(unArticulo.getAutor());
-			//solo mostrar la img si tiene una, ¿como hago?
-			if(unArticulo.tieneImagen()) {//f5
-				System.out.println(unArticulo.getUrlImagen());
-			}else {
-				System.out.println("No tiene, muestro marca de agua");
-			}
+			unArticulo.detalle();//f5
+			System.out.println("---------");
 		}
 	}
 
@@ -73,5 +74,9 @@ public class Buscador {
 			this.cantidad = this.articulos.length;
 		}
 		return cantidad;
+	}
+
+	public Articulo[] getResultados() {
+		return this.articulos;
 	}
 }

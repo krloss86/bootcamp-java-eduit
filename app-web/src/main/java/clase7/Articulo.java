@@ -17,6 +17,17 @@ public class Articulo {
 		this.urlImagen = urlImagen;
 	}
 	
+	public void detalle() {
+		System.out.println(this.getNombre());
+		System.out.println(this.getAutor());
+		//solo mostrar la img si tiene una, ¿como hago?
+		if(this.tieneImagen()) {//f5
+			System.out.println(this.getUrlImagen());
+		}else {
+			System.out.println("No tiene, muestro marca de agua");
+		}	
+	}
+	
 	//alt+shit+s
 	
 	boolean tieneImagen() {
