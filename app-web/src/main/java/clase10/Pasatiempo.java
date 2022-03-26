@@ -18,10 +18,16 @@ public class Pasatiempo extends Articulo {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-
+	/*
 	@Override
 	public void detalle() {
 		super.detalle();
+		System.out.println("Marca:" + this.marca);
+	}
+	*/
+
+	@Override
+	public void detalleHijo() {
 		System.out.println("Marca:" + this.marca);
 	}
 }

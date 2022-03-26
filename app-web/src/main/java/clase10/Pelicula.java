@@ -18,5 +18,8 @@ public class Pelicula extends Articulo {
 		this.productora = productora;
 	}
 
-	
+	@Override
+	public void detalleHijo() {
+		System.out.println("Productora: " + this.productora);
+	}
 }

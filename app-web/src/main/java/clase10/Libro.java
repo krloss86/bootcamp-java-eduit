@@ -7,6 +7,12 @@ public class Libro extends Articulo{
 	//atributos propios
 	private String isbn;
 	
+	//creo para resolver clase9
+	public Libro() {
+		//¿como invoco al constructor del padre?
+		super(null, null, null, null, null);
+	}
+	
 	public Libro(Long id, String nombre, String autor, Double precio, String urlImagen, String isbn) {
 		super(id, nombre, autor, precio, urlImagen);
 		this.isbn = isbn;
@@ -22,7 +28,7 @@ public class Libro extends Articulo{
 		//misma logica
 		this.isbn = isbn;
 	}
-
+	/*
 	public void detalle() {
 		//le digo al padre que hago lo que sabe hacer
 		super.detalle();
@@ -30,5 +36,10 @@ public class Libro extends Articulo{
 		//ahora yo hijo, hago lo que se hacer
 		System.out.println("ISBN:" + this.getIsbn());
 	}
-	
+	*/
+	//Libro esta obligado a implementar el metodo detalleHijo() de la clase padre.
+	@Override
+	public void detalleHijo() {
+		System.out.println("ISBN:" + this.getIsbn());
+	}
 }

@@ -24,9 +24,19 @@ public class Musica extends Articulo{
 		//??
 	}
 	
+	/*
 	@Override
 	public void detalle() {
 		super.detalle();
+		System.out.println("Temas:");
+		for(String tema : this.getListaTemas()) {
+			System.out.println(tema);
+		}
+	}
+	*/
+
+	@Override
+	public void detalleHijo() {
 		System.out.println("Temas:");
 		for(String tema : this.getListaTemas()) {
 			System.out.println(tema);
