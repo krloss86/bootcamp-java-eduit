@@ -42,4 +42,10 @@ public class Libro extends Articulo{
 	public void detalleHijo() {
 		System.out.println("ISBN:" + this.getIsbn());
 	}
+
+	@Override
+	public String toString() {
+		return "Libro [isbn=" + isbn + "]";
+	}
+	
 }
