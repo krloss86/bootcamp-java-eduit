@@ -1,6 +1,7 @@
 package clase20;
 
 import java.util.Date;
+import java.util.Objects;
 
 //clase inmutable
 public class Venta {
@@ -37,6 +38,26 @@ public class Venta {
 		return idVendedor;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(fecha, idVendedor, monto);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Venta other = (Venta) obj;
+		return this.idVendedor.equals(other.getIdVendedor());
+	}
+
+	
+	//lase20.Venta@2d6eabae hashCode por defecto
 	
 	//hashCode|equals
+	
 }
