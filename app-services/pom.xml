@@ -7,4 +7,20 @@
   </parent>
   <artifactId>app-services</artifactId>
   <name>modulo de servicios</name>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>ar.com.educacionit</groupId>
+  		<artifactId>app-daos</artifactId>
+  		<version>1.0.0-SNAPSHOT</version>
+  		<!-- 
+  		<exclusions>
+  			<exclusion>
+  				<groupId>mysql</groupId>
+	    		<artifactId>mysql-connector-java</artifactId>
+  			</exclusion>
+  		</exclusions>
+  		-->
+  	</dependency>
+  </dependencies>
 </project>
