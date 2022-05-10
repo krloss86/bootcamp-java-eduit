@@ -13,10 +13,16 @@ public interface ArticulosService {
 	 * @throws ServiceException 
 	 */
 	public Articulo getById(Long id) throws ServiceException;
+	
+	public Articulo getByCodigo(String codigo) throws ServiceException;
  	
 	public void deleteArticulo(Long id) throws ServiceException;
 	
 	public void updateArticulo(Articulo entity) throws ServiceException;
 
 	public List<Articulo> obtenerTodos() throws ServiceException;
+
+	public void createArticulo(Articulo nuevo) throws ServiceException;//ctrl+shif+g
+	
+	// public Articulo getMaxOrder(Long id); 
 }
