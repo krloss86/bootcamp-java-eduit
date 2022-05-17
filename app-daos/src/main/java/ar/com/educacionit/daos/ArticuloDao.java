@@ -13,4 +13,6 @@ public interface ArticuloDao extends GenericDao<Articulo>{
 
 	//no forma parte del crud
 	public Articulo getByCode(String codigo) throws GenericException;
+	
+	/*between*/
  }

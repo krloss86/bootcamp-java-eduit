@@ -15,7 +15,7 @@ public class DeleteArticuloController {
 		ArticulosService service = new ArticulosServiceImpl();
 		
 		System.out.println("Articulos existentes:");
-		List<Articulo> list = service.obtenerTodos();
+		List<Articulo> list = service.findAll();
 		System.out.println(list);
 		System.out.println("-------------------------");
 		try(Scanner teclado = new Scanner(System.in)) {
@@ -24,7 +24,7 @@ public class DeleteArticuloController {
 			
 			Long id = teclado.nextLong();
 			
-			service.deleteArticulo(id);//ctrl+t
+			service.delete(id);//ctrl+t
 		}
 	}
 

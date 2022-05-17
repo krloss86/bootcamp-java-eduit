@@ -16,7 +16,7 @@ public class ArticuloController {
 		
 		try {
 			//obtengo todos los articulos
-			List<Articulo> list = service.obtenerTodos();
+			List<Articulo> list = service.findAll();
 			
 			if(!list.isEmpty()) {
 				
@@ -32,7 +32,7 @@ public class ArticuloController {
 				articulo.setStock(25l);
 				articulo.setPrecio(100000d);
 				
-				service.updateArticulo(articulo);
+				service.update(articulo);
 			}
 			
 		} catch (ServiceException e) {
