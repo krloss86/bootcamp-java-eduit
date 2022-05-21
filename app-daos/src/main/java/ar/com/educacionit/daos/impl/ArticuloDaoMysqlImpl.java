@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
 
 import ar.com.educacionit.daos.ArticuloDao;
 import ar.com.educacionit.daos.db.AdministradorDeConexiones;
-import ar.com.educacionit.daos.db.exceptions.DuplicatedException;
 import ar.com.educacionit.daos.db.exceptions.GenericException;
 import ar.com.educacionit.domain.Articulo;
 
@@ -20,45 +18,21 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 	}
 	
 	@Override
-	public void save(Articulo articulo) throws DuplicatedException, GenericException {
-		
-		try(Connection con2 = AdministradorDeConexiones.obtenerConexion()) {
-			
-			StringBuffer sql = new StringBuffer("INSERT INTO ARTICULOS (TITULO,CODIGO, PRECIO, CATEGORIAS_ID, MARCAS_ID,FECHA_CREACION,STOCK) VALUES(");
-			sql.append("?,?,?,?,?,?,?)");
-			
-			try(PreparedStatement st = con2.prepareStatement(sql.toString(),PreparedStatement.RETURN_GENERATED_KEYS)) {
-				
-				st.setString(1, articulo.getTitulo());
-				st.setString(2, articulo.getCodigo());
-				st.setDouble(3, articulo.getPrecio());
-				st.setLong(4, articulo.getCategoriasId());
-				st.setLong(5, articulo.getMarcasId());
-				st.setDate(6, new java.sql.Date(System.currentTimeMillis()));//java.sql.Date
-				st.setLong(7, articulo.getStock());
-									
-				st.execute();
-				
-				try(ResultSet rs = st.getGeneratedKeys()){
-					
-					if(rs.next()) {
-						
-						Long id = rs.getLong(1);
-						
-						articulo.setId(id);
-					}
-				}
-			}			
-		}catch(SQLException se) {
-			if(se instanceof SQLIntegrityConstraintViolationException) {
-				throw new DuplicatedException("No se ha podido insertar el articulo, integridad de datos violada",se);
-			}
-			throw new GenericException(se.getMessage(), se);
-		}catch(GenericException ge) {
-			throw new GenericException(ge.getMessage(), ge);
-		}
+	public String getSaveSQL() {
+		return "(TITULO,CODIGO, PRECIO, CATEGORIAS_ID, MARCAS_ID,FECHA_CREACION,STOCK) VALUES (?,?,?,?,?,?,?)";
 	}
 
+	@Override
+	public void saveData(Articulo entity, PreparedStatement st) throws SQLException {
+		st.setString(1, entity.getTitulo());
+		st.setString(2, entity.getCodigo());
+		st.setDouble(3, entity.getPrecio());
+		st.setLong(4, entity.getCategoriasId());
+		st.setLong(5, entity.getMarcasId());
+		st.setDate(6, new java.sql.Date(System.currentTimeMillis()));//java.sql.Date
+		st.setLong(7, entity.getStock());
+	}
+	
 	@Override
 	public Articulo getByCode(String codigo) throws GenericException {
 		try(Connection con2 = AdministradorDeConexiones.obtenerConexion()) {
@@ -83,68 +57,6 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 		}
 	}
 
-	@Override
-	public void update(Articulo articuloToUpdate) throws GenericException {
-		StringBuffer sql = new StringBuffer("UPDATE ARTICULOS SET ");
-		if(articuloToUpdate.getTitulo() != null) {
-			sql.append("titulo=?").append(", ");
-		}
-		if(articuloToUpdate.getCodigo() != null) {
-			sql.append("codigo=?").append(", ");
-		}
-		if(articuloToUpdate.getPrecio() != null) {
-			sql.append("precio=?").append(", ");
-		}
-		if(articuloToUpdate.getStock() != null) {
-			sql.append("stock=?").append(", ");
-		}
-		if(articuloToUpdate.getMarcasId() != null) {
-			sql.append("marcas_id=?").append(", ");
-		}
-		if(articuloToUpdate.getCategoriasId() != null) {
-			sql.append("categorias_id=?").append(",");
-		}
-		
-		sql = new StringBuffer(sql.substring(0, sql.length()-1));
-		
-		sql.append(" where id=?");
-		
-		try(Connection con2 = AdministradorDeConexiones.obtenerConexion()) {
-			
-			try(PreparedStatement st = con2.prepareStatement(sql.toString())) {
-				
-				//puedo setear atributo=valor con el tipo correcto
-				
-				if(articuloToUpdate.getTitulo() != null) {
-					st.setString(1, articuloToUpdate.getTitulo());
-				}
-				if(articuloToUpdate.getCodigo() != null) {
-					st.setString(2, articuloToUpdate.getCodigo());
-				}
-				if(articuloToUpdate.getPrecio() != null) {
-					st.setDouble(3, articuloToUpdate.getPrecio());
-				}
-				if(articuloToUpdate.getStock() != null) {
-					st.setLong(4, articuloToUpdate.getStock());
-				}
-				if(articuloToUpdate.getMarcasId() != null) {
-					st.setLong(5, articuloToUpdate.getMarcasId());
-				}
-				if(articuloToUpdate.getCategoriasId() != null) {
-					st.setLong(6, articuloToUpdate.getCategoriasId());	
-				}
-				
-				st.setLong(7, articuloToUpdate.getId());
-				
-				st.execute();//alt+shift+m
-			}			
-		}catch(GenericException ge) {
-			throw new GenericException(ge.getMessage(), ge);
-		}catch(SQLException se) {
-			throw new GenericException(se.getMessage(), se);
-		}
-	}
-	
 	public Articulo fromResultSetToEntity(ResultSet rs) throws SQLException {
 		Long idArticulo = rs.getLong("id");
 		String titulo = rs.getString("titulo");
@@ -157,4 +69,53 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 		return new Articulo(idArticulo, titulo, codigo, fechaCreacion, precio, stock, marcasId, categoriasId);
 	}
 
+
+	@Override
+	public void updateData(Articulo entity, PreparedStatement st) throws SQLException {
+		if (entity.getTitulo() != null) {
+			st.setString(1, entity.getTitulo());
+		}
+		if (entity.getCodigo() != null) {
+			st.setString(2, entity.getCodigo());
+		}
+		if (entity.getPrecio() != null) {
+			st.setDouble(3, entity.getPrecio());
+		}
+		if (entity.getStock() != null) {
+			st.setLong(4, entity.getStock());
+		}
+		if (entity.getMarcasId() != null) {
+			st.setLong(5, entity.getMarcasId());
+		}
+		if (entity.getCategoriasId() != null) {
+			st.setLong(6, entity.getCategoriasId());
+		}
+		
+	}
+
+	@Override
+	public String getUpdateSQL(Articulo entity) {
+		StringBuffer sql = new StringBuffer();
+		
+		if (entity.getTitulo() != null) {
+			sql.append("titulo=?").append(", ");
+		}
+		if (entity.getCodigo() != null) {
+			sql.append("codigo=?").append(", ");
+		}
+		if (entity.getPrecio() != null) {
+			sql.append("precio=?").append(", ");
+		}
+		if (entity.getStock() != null) {
+			sql.append("stock=?").append(", ");
+		}
+		if (entity.getMarcasId() != null) {
+			sql.append("marcas_id=?").append(", ");
+		}
+		if (entity.getCategoriasId() != null) {
+			sql.append("categorias_id=?").append(",");
+		}
+		
+		return sql.substring(0, sql.length() - 1).toString();
+	}
 }
