@@ -72,23 +72,25 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 
 	@Override
 	public void updateData(Articulo entity, PreparedStatement st) throws SQLException {
+		int idx = 1;
 		if (entity.getTitulo() != null) {
-			st.setString(1, entity.getTitulo());
+			st.setString(idx++, entity.getTitulo());
 		}
+		/*
 		if (entity.getCodigo() != null) {
 			st.setString(2, entity.getCodigo());
-		}
+		}*/
 		if (entity.getPrecio() != null) {
-			st.setDouble(3, entity.getPrecio());
+			st.setDouble(idx++, entity.getPrecio());
 		}
 		if (entity.getStock() != null) {
-			st.setLong(4, entity.getStock());
+			st.setLong(idx++, entity.getStock());
 		}
 		if (entity.getMarcasId() != null) {
-			st.setLong(5, entity.getMarcasId());
+			st.setLong(idx++, entity.getMarcasId());
 		}
 		if (entity.getCategoriasId() != null) {
-			st.setLong(6, entity.getCategoriasId());
+			st.setLong(idx++, entity.getCategoriasId());
 		}
 		
 	}
@@ -100,9 +102,9 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 		if (entity.getTitulo() != null) {
 			sql.append("titulo=?").append(", ");
 		}
-		if (entity.getCodigo() != null) {
+		/*if (entity.getCodigo() != null) {
 			sql.append("codigo=?").append(", ");
-		}
+		}*/
 		if (entity.getPrecio() != null) {
 			sql.append("precio=?").append(", ");
 		}
