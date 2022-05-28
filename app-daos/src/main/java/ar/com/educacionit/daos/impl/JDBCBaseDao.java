@@ -1,5 +1,6 @@
 package ar.com.educacionit.daos.impl;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -105,10 +106,37 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T>{
 		}
 	}
 	
-	private Object getSaveSQL2(T entity) {
-		//armar la logica para el insert...
-		return null;
+	public String getSaveSQL2(T entity) throws GenericException {
+		StringBuilder sb = new StringBuilder();
+		try {
+			Field[] campos = entity.getClass().getDeclaredFields();
+			sb.append("( ");
+			for (int i = 0; i < campos.length; i++) { //TODO que pasa si cambio el orden los atributos
+				campos[i].setAccessible(true);
+				String fName = campos[i].getName();// tengo que agregar el "_" em la primera mayuscula
+				if(fName.toLowerCase().equals("id")) {
+					continue;
+				}
+				fName = fName.replaceAll("(.)(\\p{Lu})", "$1_$2");
+				// System.err.println(fName);
+				sb.append(fName.toUpperCase() + ",");
+			}
+			sb.deleteCharAt(sb.length() - 1); // borra la ultima ","
+			sb.append(") VALUES (");
+			// agrego los "?" correspondiente a la cantidad de campos
+			for (int i = 1; i < campos.length; i++) { // comienza despues del 1º elemento ID
+				sb.append("?,");
+			}
+			sb.deleteCharAt(sb.length() - 1); // borra la ultima ","
+			sb.append(")");
+		} catch (Exception e) {
+			System.err.println(sb);
+			throw new GenericException(tabla, e);
+		}
+
+		return sb.toString(); // devuelvo la consulta
 	}
+
 
 	@Override
 	public T getByPK(Long id) throws GenericException {
