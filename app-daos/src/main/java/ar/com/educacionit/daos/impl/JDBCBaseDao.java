@@ -28,11 +28,19 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T>{
 	}
 	
 	//cada impl debe especificar como es su sql insert
-	public abstract String getSaveSQL();
-	public abstract void saveData(T entity,PreparedStatement pst) throws SQLException;
+	public String getSaveSQL() {
+		return "";
+	}
+	public void saveData(T entity,PreparedStatement pst) throws SQLException {
+		
+	}
 	
-	public abstract String getUpdateSQL(T entity);
-	public abstract void updateData(T entity, PreparedStatement st) throws SQLException;
+	public String getUpdateSQL(T entity) {
+		return "";
+	}
+	public void updateData(T entity, PreparedStatement st) throws SQLException {
+	
+	}
 
 	public void update(T entity) throws GenericException {
 		
