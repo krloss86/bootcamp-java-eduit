@@ -35,5 +35,14 @@
 		<version>${junit.platform.version}</version>
 		<scope>test</scope>
 	</dependency>
+	
+	<!-- apache poi -->
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml</artifactId>
+	    <version>5.2.2</version>
+	</dependency>
+	
   </dependencies>
 </project>
