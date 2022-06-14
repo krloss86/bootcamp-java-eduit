@@ -2,26 +2,59 @@
 <!DOCTYPE>
 <html>
 	<head>
-		<title>Título de página</title>
+		<title>Tï¿½tulo de pï¿½gina</title>
+
+		<style>
+			/*
+				1 forma de aplicar css: INTERNO
+			*/
+			/*por nombr de la etiqueta*/
+			
+		</style>
+		<!-- EXTERNA-->
+		<link rel="stylesheet" href="styles.css"></link>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	</head>
 	
 	<body>
-		<!-- etiquetas semánticas -->
+		<!-- etiquetas semï¿½nticas -->
 		<header>
-			<h1>encabezado del documento o de sección</h1>
-			<h2>encabezado del documento o de sección</h2>
-			<h3>encabezado del documento o de sección</h3>
-			<h4>encabezado del documento o de sección</h4>
-			<h5>encabezado del documento o de sección</h5>
+			<h1>encabezado del documento o de secciï¿½n</h1>
+			<h2>encabezado del documento o de secciï¿½n</h2>
+			<h3>encabezado del documento o de secciï¿½n</h3>
+			<h4>encabezado del documento o de secciï¿½n</h4>
+			<h5>encabezado del documento o de secciï¿½n</h5>
 		</header>
 		<nav>
 			<b>conjunto de enlaces</b>
 		</nav>
 		<main>
-			<mark>contenido principal de la aplicación</mark>
+			<!-- comentario HTML -->
+			<!-- estilo INLINE-->
+			<mark>contenido principal de la aplicaciï¿½n</mark>
 			<section>
-				<ins>define una sección de documento</ins>
+				<ins>define una secciï¿½n de documento</ins>
 			</section>			
+
+			<section class="sectionCustom">				
+				<h3>Selector por clase</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia placeat voluptatum vitae rem architecto aspernatur necessitatibus harum provident, magni, fugiat culpa dolores vel esse ea id excepturi, ullam exercitationem pariatur.</p>
+			</section>
+
+			<section id="selectionCustomId">				
+				<h3>Selector por ID</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia placeat voluptatum vitae rem architecto aspernatur necessitatibus harum provident, magni, fugiat culpa dolores vel esse ea id excepturi, ullam exercitationem pariatur.</p>
+			</section>
+			<!-- clase: para no duplicar codigo -->
+			<div class="divBloque">
+				<h3>Soy un h3</h3>
+				<p>Soy un bloque</p>	
+			</div>
+			<div class="divBloque">
+				<h3>Soy un h3</h3>
+				<p>Soy un bloque</p>	
+			</div>
 		</main>
 		<aside>
 			<small>publicidad</small>

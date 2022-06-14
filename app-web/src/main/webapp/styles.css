@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100&display=swap');
+/*
+    debe ser css
+*/
+mark {
+    background-color: aqua;
+    font-size: 16px;
+    text-decoration-line: line-through;
+}
+
+body {
+    /* background-image: url(img.webp); */
+    background-color: antiquewhite;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+section {
+    background-color: blueviolet;
+}
+
+/*select por clase*/
+.sectionCustom {
+    background-color: rgb(196, 231, 255);
+}
+
+#selectionCustomId {
+    background-color: brown;
+}
+
+/*selector universal*/
+* {
+    /* margin: 0; */
+    /* padding: 0; */
+    /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
+    font-family: 'Roboto Slab', serif;
+}
+
+/*tomar el div y a los p le doy estilos particulares*/
+/*herencia (relacion padre, hijo)*/
+.divBloque {
+    border: thin solid;
+    background-color: aqua;
+}
+.divBLoquediv p{
+    font-size: 25px;
+    color: blue;
+    text-decoration-line: underline;
+}
+
