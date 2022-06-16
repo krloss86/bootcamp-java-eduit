@@ -1,0 +1,16 @@
+/*es css*/
+/*
+    <style>
+        esto es un comentario
+    </style>
+*/
+h1 {
+    color: red;
+}  
+h2 {
+    color: blue;
+}
+p {
+    font-size: 20px;
+    text-transform: capitalize;
+}

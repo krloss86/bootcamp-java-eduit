@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*css*/
+        /*selector por tipo*/
+        /*
+        h1 {
+            color: red;
+        }  
+        h2 {
+            color: blue;
+        }
+    
+        p {
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+        */
+        /*defino una clase css*/
+        .bodyColor {
+            /* background-color: antiquewhite; */
+            /*font-size: 30px;*/
+        }
+
+        /*por id*/
+        #parosColor {
+            font-size: 30px;
+            font-family: Cambria;
+            color: blueviolet;
+        }
+
+        .parosSectionClass {
+            background-color: yellow;
+        }
+
+        a {
+             text-decoration: none; 
+            /*cursor: copy;*/
+        }
+
+        /*pseudo-clase*/
+        a:visited {
+            color: aquamarine;
+        }
+        a:active {
+            font-size: 35px;
+        }
+
+        /*padre > hijo*/
+        .parosSectionClass h2,p {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body class="bodyColor">
+    <!--aca va lo que el usuario ve en la pantalla-->
+    <h1>Hola</h1>
+    <p style="color:yellow">soy un parrafo</p>
+    <a href="http://www.google.com.ar" target="_blank">ir a google.com.ar</a>
+
+    <ul>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+    </ul>
+
+    <ol>
+        <li>
+            a
+        </li>
+        <li>
+            b|
+        </li>
+    </ol>
+
+    <main>
+       <!-- contenido ppal --> 
+       <section class="parosSectionClass">
+            <h2 id="parosColor">Paros:</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet nisi molestias alias sunt nihil nemo deserunt distinctio omnis dicta veniam ea numquam, cumque reiciendis, in ipsum ducimus exercitationem expedita ullam.</p>
+       </section>
+
+       <section class="parosSectionClass">
+            <h2>Frecuencia</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos sequi cupiditate voluptate sapiente magnam doloremque distinctio maxime, odit molestiae! Eveniet quas non corporis quos tenetur eum laudantium harum ipsam quasi!</p>
+       </section>
+    </main>
+
+    <!--secundario -->
+    <aside class="parosSectionClass">
+        <ul>
+            <li>Fotos de fomosos</li>
+        </ul>
+        <ul>
+            <li>Venta de autos</li>
+        </ul>
+    </aside>
+
+    <footer>
+        <!-- mapa de sitio, contato-->
+        <a href="http://www.google.com.ar">Contato</a>
+        <a href="http://www.google.com.ar">Mapa</a>
+    </footer>
+</body>
+</html>

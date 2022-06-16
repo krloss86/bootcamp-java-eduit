@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 5;
+            padding: 5;
+        }
+        .StyleBase {
+            padding: 5px; 
+            background-color: green;
+            width: 100%;
+            border: 1px thin solid;
+        }
+
+        .StyleUno {
+            background-color: yellow;
+        }
+
+        .StyleDos {
+            background-color: blue;
+        }
+
+        .StyleTres {
+            background-color: red;
+        }
+
+        .StyleCuatro {
+            background-color: orange;
+        }
+
+        .container {
+            height: 50px;
+            display: inline-block;
+            margin-left: 5px;
+            /* width: 20%; */
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        <table>
+          <tr>
+            <th style="background-color:yellow; color:red">uno</th>
+            <th style="background-color:blue; color:white">dos</th>
+            <th style="background-color:red">tres</th>
+            <th style="background-color:orange">cuatro</th>
+          </tr>
+        </table>
+    -->
+    <div class="StyleBase">
+        <div class="container StyleUno">
+            <table>
+                <tr>
+                  <th style="background-color:yellow; color:red">uno</th>
+                  <th style="background-color:blue; color:white">dos</th>
+                  <th style="background-color:red">tres</th>
+                  <th style="background-color:orange">cuatro</th>
+                </tr>
+              </table>
+        </div>
+        <div class="container StyleDos">
+            <p>Dos</p>
+        </div>
+        <div class="container StyleTres">
+            <p>Tres</p>
+        </div>
+        <div class="container StyleCuatro">
+            <p>Cuatro</p>
+        </div>
+    </div> 
+</body>
+
+</html>
