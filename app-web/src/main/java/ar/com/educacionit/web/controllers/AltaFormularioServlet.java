@@ -1,26 +1,39 @@
 package ar.com.educacionit.web.controllers;
 
-public class AltaFormularioServlet /*extends Alguien */{
+import java.io.IOException;
+import java.util.Collection;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import ar.com.educacionit.domain.Articulo;
+import ar.com.educacionit.services.ArticulosService;
+import ar.com.educacionit.services.exceptions.ServiceException;
+import ar.com.educacionit.services.impl.ArticulosServiceImpl;
+
+@WebServlet("/controller/AltaFormularioServlet")
+public class AltaFormularioServlet extends HttpServlet {
+
+	private static final long serialVersionUID = -3953577187787582717L;
 	
 	//GET
-	/*public void get(request, response) {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		//capturar los datos que se enviaron desde el form
+		String fecha = request.getParameter("fecha");//> String
 		
-		//aplica logica 
+		ArticulosService ar = new ArticulosServiceImpl();
+		try {
+			Collection<Articulo> list = ar.findAll();			
+			request.setAttribute("articulos", list);
+			//OK
+			getServletContext().getRequestDispatcher("/registroOk.jsp").forward(request, response);
+		} catch (ServiceException e) {
+			//FAIL
+			getServletContext().getRequestDispatcher("/registroFail.jsp").forward(request, response);
+		}
 		
-		//responder algo
 	}
-	
-	
-	//POST
-	//file
-	public void post(request, response) {
-		
-		//capturar los datos que se enviaron desde el form
-		
-		//aplica logica 
-		
-		//responder algo
-	}*/
 }
