@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="ar.com.educacionit.web.enums.AttributesEnum"%>
 <%@page import="ar.com.educacionit.domain.Articulo"%>
 <%@page import="java.util.Collection"%>
 <html lang="en">
@@ -17,7 +18,7 @@
 			            JSP + Servlet
 			        </h1>
 			        <section>
-			        	<h3>Lista de Articulos = <%Collection<Articulo> list = (Collection<Articulo>)request.getAttribute("articulos");%> </h3>
+			        	<h3>Lista de Articulos = <%Collection<Articulo> list = (Collection<Articulo>)request.getAttribute(AttributesEnum.ARTICULOS.getValue());%> </h3>
 						<table class="table">
 						  <thead>
 						    <tr>
