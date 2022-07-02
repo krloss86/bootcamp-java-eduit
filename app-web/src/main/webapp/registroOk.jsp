@@ -8,10 +8,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clase2 HTML</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- tag html que permite escribir codigo js -->
+    <script>
+    	//js cliente: navegadores
+		//variable
+		var edad = 10;// MALA PALABRA!!!!!!!!!
+		//GLOBAL
+		
+    	let nombre = 'carlos';
+    	const apellido = "lopez"
+    	
+    	let flag = true;//false
+    	let fecha = new Date();
+    	
+    	//objeto
+    	let persona = {
+    		//atributo
+    		dni:'12345678',
+    		nombre:'juan',
+    		apellido:'perez',
+    		dato:100
+    	};
+    	persona.dni;
+    	persona.nombre;
+    	persona.apellido;
+    	persona.dato;
+    	
+    	//System.out.println() > console.log()
+    	debugger;
+    	console.log('nombre', nombre);
+    	
+    	//funcion
+    	function sumar(valora, valorb){
+    		console.log(valora+valorb);
+    	}
+    	
+    	restar = function(a,b) {
+    		console.log(a-b);
+    	}
+    </script>
 </head>
 <body>
     <main>
 	    <div class="container">
+	    
+	    	<div id="tareas">vacio</div>
+	    
 	    	<div class="row">
 	    		<div class="col-6">
 			        <h1>
@@ -43,7 +85,10 @@
 										</button>
 										-->
 										<a class="btn btn-danger" role="button" href="<%=request.getContextPath()%>/controllers/EliminarArticuloServlet?id=<%=fila.getId() %>">Eliminar</a>
-							      		<a class="btn btn-primary" role="button">Editar</a>
+							      		<!-- Button trigger modal -->
+										<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+										  Editar
+										</button>
 							      </td>
 							    </tr>
 						    <%} %>						   
