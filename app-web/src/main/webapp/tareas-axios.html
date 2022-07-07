@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase2 HTML</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+        function findUsers(page = 1) {
+            console.log('Pagina: ', page);
+            axios.get(`https://reqres.in/api/users?page=${page}`)
+                .then(function (response) {
+                    // handle success
+                    // obtengo el json real que me da servidor
+                    const msj = {
+                        type: 'success',
+                        msj: 'Lista obtenida exitosamente.'
+                    };
+                    Message(msj)
+                    console.log(response.data);
+
+                    //invocar al componente que muestra la lista de usuarios
+                    UserList(response.data);
+                })
+                .catch(function (error) {
+                    // handle error
+                    const msj = {
+                        type: 'danger',
+                        msj: error.message
+                    };
+                    Message(msj);
+                    //console.log(error);
+                })
+                .then(function () {
+                    console.log("buscando lista de usuarios...")
+                });
+        }
+
+        /*const msj = {
+                type:'error',
+                msj: error.message
+            };*/
+        function Message(message) {
+            const divError = document.getElementById('divError');
+            const alert = `
+                <div class="alert alert-${message.type} alert-dismissible fade show" role="alert">
+                    <strong>${message.msj}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> 
+            `;
+            divError.innerHTML = alert;
+        }
+
+        function UserList(data) {
+            const divError = document.getElementById('users');
+
+            const userListTable = `
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">email</th>
+                        <th scope="col">first_name</th>
+                        <th scope="col">last_name</th>
+                        <th scope="col">avatar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    ${User(data.data)}
+                    </tbody>
+                </table>
+                
+                ${ListPage(data.total_pages,data.page)}                    
+            `;
+
+            divError.innerHTML = userListTable;
+        }
+
+        function User(users) {
+            let usersRow = ``;
+            for (let user of users) {
+                usersRow += `
+                    <tr>
+                        <th scope="row">${user.id}</th>
+                        <td>${user.email}</td>
+                        <td>${user.first_name}</td>
+                        <td>${user.last_name}</td>
+                        <td>
+                            <img src="${user.avatar}">
+                        </td>
+                        </tr>
+                    <tr>
+                `;
+            }
+            return usersRow;
+        }
+
+        function ListPage(totalPages,currentPage) {
+            console.log(totalPages)
+            let listRow = `<nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item ${currentPage === 1 ? 'disabled': ''}">
+                                <a class="page-link" onclick="findUsers(${currentPage-1})" href="javascript:doVoid()" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>`;
+                        
+            for (let i = 0; i <= totalPages - 1; i++) {
+                let page = i + 1;
+                listRow += `
+                <li class="page-item ${currentPage === (i+1) ? 'active' : ''}">
+                    <a onClick="findUsers(${page})" class="page-link" href="javascript:doVoid()">${page}</a>
+                </li>
+                `;
+            }
+            listRow += `<li class="page-item ${currentPage === totalPages ? 'disabled': ''}">
+                            <a class="page-link" onclick="findUsers(${currentPage+1})" href="javascript:doVoid()">Next</a>
+                        </li>
+                    </ul>
+                </nav>`;
+            return listRow;
+        }
+
+        function doVoid() {
+
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="col-12">
+                <div id="divError"></div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-6">
+                    <button class="btn btn-success" onclick="findUsers()">
+                        Buscar Usuarios
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div id="users"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</html>
