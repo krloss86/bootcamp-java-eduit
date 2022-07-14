@@ -15,14 +15,25 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class MeliSite {
 
 	@JsonProperty("default_currency_id")
-	public String defaultCurrencyId;
+	private String defaultCurrencyId;
 	@JsonProperty("id")
-	public String id;
+	private String id;
 	@JsonProperty("name")
-	public String name;
+	private String name;
 	@Override
 	public String toString() {
 		return "MeliSite [defaultCurrencyId=" + defaultCurrencyId + ", id=" + id + ", name=" + name + "]";
 	}
-
+	public String getDefaultCurrencyId() {
+		return defaultCurrencyId;
+	}
+	public void setDefaultCurrencyId(String defaultCurrencyId) {
+		this.defaultCurrencyId = defaultCurrencyId;
+	}
+	public String getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
 }
