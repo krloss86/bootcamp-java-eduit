@@ -1,4 +1,4 @@
-package ar.com.educacionit.web.controllers;
+package ar.com.educacionit.web.controllers.console;
 
 import ar.com.educacionit.domain.Articulo;
 import ar.com.educacionit.services.ArticulosService;

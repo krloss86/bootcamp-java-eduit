@@ -1,23 +1,3 @@
-<script>
-	function openAltaModal() {
-		var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
-			  keyboard: false
-		});
-		
-		//invocar a nuestro back, esperar obtener el json con las categorias y las marcas
-		axios.get(`<%=request.getContextPath()%>/api/AltaDatosController`)
-          .then(function (response) {        	  
-        	  console.log(response);
-        	  myModal.show();  
-          })
-          .catch(function (error) {
-              
-          })
-          .then(function () {
-              console.log("buscando lista de usuarios...")
-          });
-	}
-</script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -30,8 +10,13 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
+       	<!-- 
           <a class="nav-link" href="#" onclick="openAltaModal()">
           	Crear Producto
+          </a>
+          -->
+          <a class="nav-link" href="<%=request.getContextPath()%>/controller/ListadoController">
+          	Listado
           </a>
         </li>
         <li class="nav-item dropdown">
@@ -64,4 +49,3 @@
     </div>
   </div>
 </nav>
-<%@include file="alta.jsp"%>

@@ -86,7 +86,7 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T>{
 		try(Connection con2 = AdministradorDeConexiones.obtenerConexion()) {
 			
 			StringBuffer sql = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL());
-			StringBuffer sql2 = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL2(entity));
+			//StringBuffer sql2 = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL2(entity));
 			
 			try(PreparedStatement st = con2.prepareStatement(sql.toString(),PreparedStatement.RETURN_GENERATED_KEYS)) {
 				

@@ -7,41 +7,36 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="<%=request.getContextPath()%>/controller/CrearArticuloController" method="POST">
 			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">Título</label>
-			    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+			    <label for="titulo" class="form-label">Título</label>
+			    <input type="text" class="form-control" id="titulo">
 			  </div>
 			  <div class="mb-3">
-			    <label for="exampleInputPassword1" class="form-label">Código</label>
-			    <input type="text" class="form-control" id="exampleInputPassword1">
+			    <label for="codigo" class="form-label">Código</label>
+			    <input type="text" class="form-control" id="codigo">
 			  </div>
 			  <div class="mb-3">
-			    <label for="exampleInputPassword1" class="form-label">Precio</label>
-			    <input type="text" class="form-control" id="exampleInputPassword1">
+			    <label for="precio" class="form-label">Precio</label>
+			    <input type="number" min="0" class="form-control" id="precio">
 			  </div>
 			  <div class="mb-3">
-			    <label for="exampleInputPassword1" class="form-label">Stock</label>
-			    <input type="text" class="form-control" id="exampleInputPassword1">
+			    <label for="stock" class="form-label">Stock</label>
+			    <input type="text" class="form-control" id="stock">
 			  </div>
 			  <div class="mb-3">
-				<select class="form-select" aria-label="Default select example">
-				  <option selected>Marcas</option>
-				  <option value="1">One</option>
-				  <option value="2">Two</option>
-				  <option value="3">Three</option>
+			  	<label for="marcas" class="form-label">Marcas</label>
+				<select class="form-select" aria-label="Marcas" id="marcas">
+					<!-- crear los elementos por medio del DOM  -->
 				</select>			  
 			  </div>
 			  <div class="mb-3">
-				<select class="form-select" aria-label="Default select example">
-				  <option selected>Categorias</option>
-				  <option value="1">One</option>
-				  <option value="2">Two</option>
-				  <option value="3">Three</option>
+			  	<label for="categorias" class="form-label">Categorias</label>
+				<select class="form-select" aria-label="Categorias" id="categorias">
 				</select>			  
 			  </div>
 			  <button type="submit" class="btn btn-primary">Grabar</button>
-			</form>
+		</form>
       </div>
 <!--       <div class="modal-footer"> -->
 <!--         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> -->
@@ -50,3 +45,51 @@
     </div>
   </div>
 </div>
+<script>
+	function openAltaModal() {
+		var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+			  keyboard: false
+		});
+		
+		//invocar a nuestro back, esperar obtener el json con las categorias y las marcas
+		axios.get(`<%=request.getContextPath()%>/api/AltaDatosController`)
+          .then(function (response) {        	  
+//            alert(response.data.categorias);
+         	  
+         	  Categorias(response.data.categorias);
+         	  Marcas(response.data.marcas);
+         	  
+        	  myModal.show();  
+          })
+          .catch(function (error) {
+              
+          })
+          .then(function () {
+              console.log("buscando lista de usuarios...")
+          });
+	}
+	
+	function Categorias(categorias) {
+		debugger;
+		llenarLista('categorias',categorias);
+	}
+	
+	function Marcas(categorias) {
+		llenarLista('marcas', categorias);		
+	}
+	
+	function llenarLista(id,lista) {
+		const htmlSelect = document.getElementById(id);	
+		if(lista.length > 0) {
+			for(const aux of lista) {
+				if(aux.habilitada === 1) {
+					const option = document.createElement('option');
+// 					option.id = aux.id;
+					option.value = aux.id;
+					option.text = aux.descripcion; 
+					htmlSelect.appendChild(option);
+				}
+			}
+		}
+	}
+</script>
