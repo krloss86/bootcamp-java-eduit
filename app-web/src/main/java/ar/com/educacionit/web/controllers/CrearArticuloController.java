@@ -1,6 +1,8 @@
 package ar.com.educacionit.web.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,13 +25,19 @@ public class CrearArticuloController extends BaseServlet{
 		String titulo = req.getParameter("titulo");
 		String codigo = req.getParameter("codigo");
 		String stock = req.getParameter("stock");
-		String categoriaId = req.getParameter("categoria");//1
-		String marcasId = req.getParameter("marcas");//1
+		String categoriaId = req.getParameter("categoriaId");//1
+		String marcasId = req.getParameter("marcaId");//1
 		
-		ViewsEnum target = ViewsEnum.LISTADO;
+		//valido previamente
+		//IValidador validator = new AltaWebValidator(req);//request es objeto de la web.
+		
+		ViewsEnum target = ViewsEnum.LISTADO_CONTROLLER;
+		
+		ArticulosService articuloService = new ArticulosServiceImpl();
 		
 		try {
-			ArticulosService articuloService = new ArticulosServiceImpl();
+			
+			//IValidador validator2 = new AltaValidator(precio,titulo,....);//request es objeto de la web.
 
 			Articulo nuevo = new Articulo(titulo, codigo, null, Double.parseDouble(precio), Long.parseLong(stock), Long.parseLong(marcasId), Long.parseLong(categoriaId));
 			
@@ -38,9 +46,13 @@ public class CrearArticuloController extends BaseServlet{
 			//msj ok
 			super.setAttribute(AttributesEnum.EXITO, req, "Producto id"+nuevo.getId()+" OK");
 		} catch (ServiceException e) {
-			super.setAttribute(AttributesEnum.ERROR_GENERAL, req, e.getMessage());
+			super.setAttribute(AttributesEnum.ERROR_GENERAL, req, e.getMessage() + "-" + e.getCause().getMessage());
 			//msj error
-		}
+		} /*catch (ValidatoException ve) {
+			super.setAttribute(AttributesEnum.ERROR_GENERAL, req, e.getMessage());
+		}*/
+		//de un controller voy a otro controller
+		//getServletContext().getRequestDispatcher("/controller/ListadoController").forward(req, resp);
 		
 		redirect(target, req, resp);
 	}

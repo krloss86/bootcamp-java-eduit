@@ -5,7 +5,7 @@
 	
 	String clase = null;
 	if(exito !=null || error != null) {
-		clase = exito!=null ? "success" : "error";
+		clase = exito!=null ? "success" : "danger";
 	}
 %>
 
@@ -13,7 +13,7 @@
 	if(clase != null) {
 %>
 	<div class="alert alert-<%=clase%>" role="alert">
-	  A simple success alert—check it out!
+	  <%=exito != null ? exito: error %>
 	</div>
 <%
 	}

@@ -8,6 +8,7 @@ public enum ViewsEnum {
 	REGISTRO_OK("/registroOk.jsp"),//ctrl+shift+y > minuscula
 	REGISTRO_FAIL("/registroFail.jsp"),//ctrl+shift+x > mayuscula
 	//ERORR_DEFAULT("error.jsp")
+	LISTADO_CONTROLLER("/controller/ListadoController"),
 	;
 	
 	private String value;
