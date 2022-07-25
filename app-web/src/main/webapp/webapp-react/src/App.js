@@ -1,5 +1,7 @@
 import style from './App.module.css';
-import { MoviesGrid } from './Components/MoviesGrid';
+import { MoviesGrid } from './components/MoviesGrid';
+import {BrowserRouter, Routes, Route }  from 'react-router-dom';
+
 
 function App() {
 
@@ -9,7 +11,13 @@ function App() {
         <h1 className={style.title}>Movies</h1>
       </header>
       <main>
-        <MoviesGrid />
+        {/* <MoviesGrid /> */}
+        <BrowserRouter>
+          <Routes>
+              <Route path='/' element={<MoviesGrid/>}>
+              </Route>
+          </Routes>
+        </BrowserRouter>
       </main>
     </>
   );
