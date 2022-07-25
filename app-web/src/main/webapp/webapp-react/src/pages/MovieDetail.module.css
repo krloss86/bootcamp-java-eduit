@@ -1,0 +1,16 @@
+.detailsContainer {
+    /*usamos flex porque vamos a tener columnas o filas*/
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.col {
+    max-width: 400px;
+    margin: 15px;
+    width: 80%;
+}
+
+.movieImage {
+    border-radius: 15px;
+}
