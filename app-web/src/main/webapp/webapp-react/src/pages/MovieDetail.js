@@ -2,17 +2,25 @@
 import styles from './MovieDetail.module.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { get } from '../utils/httpClient';
+import { Spinner } from '../Components/Spinner';
 
 export const MovieDetail = () => {
     const {movieId} = useParams();
     const [movie,setMovie] = useState(null);
+    const [isLoading,setIsLoading] = useState(true)
     
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=f4e274acbb7f90c87b86ade5c873c6c8&language=en-US`)
-        .then(pepe => pepe.json())
-        .then(data => setMovie(data));
+        setIsLoading(true);
+        get(`/movie/${movieId}`)        
+        .then(data => {
+            setMovie(data);setIsLoading(false);
+        });
     },[movieId]);
 
+    if(isLoading) {
+        return <Spinner/>
+    }
     if(!movie) {
         return null;
     }

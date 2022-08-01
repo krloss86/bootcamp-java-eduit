@@ -5,6 +5,7 @@ import { MovieDetail } from './pages/MovieDetail';
 
 function App() {
   return (
+    
       <BrowserRouter>
         <header>
           <Link to="/">
