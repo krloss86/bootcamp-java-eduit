@@ -1,30 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styles from './MovieDetail.module.css';
+import { get } from './../utils/httpClient';
+import { Spinner } from './Spinner';
 
 export function MovieDetail() {
-
-    // cuando la variable en la url
-    // /algo/12345 es un pathParams
-
-    //cuando es ?clave=valor es un query params (query string)
-
-    //declaro el stado
     const [movie, setMovie] = useState(null);
-
-    const [isLoading,setLoading] = useState(false)
-
-    //esto lo vamos a tomar desde el pathParams
+    const [isLoading,setLoading] = useState(true)
     const {movieId} = useParams();
 
     useEffect( () =>{
-        setLoading(false);
-        fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=f4e274acbb7f90c87b86ade5c873c6c8&language=en-US`)
-        .then(res => res.json())
-        .then(data => {setMovie(data); setLoading(true)});
+        setLoading(true);
+        get(`/movie/${movieId}`)
+        .then(data => {
+            setMovie(data); 
+            setLoading(false);
+        });
     },[]);
 
-    //no mostar si la pelicula esta cargando.
+    if(isLoading) {
+        return <Spinner/>;
+    }
+
     if(!movie) {
         return null;
     }
@@ -33,7 +30,6 @@ export function MovieDetail() {
     
     return (
         <>
-        {isLoading && <>  
             <div className={styles.detailsContainer}>
                 <img src={imageURL} 
                     alt={movie.title} 
@@ -54,14 +50,7 @@ export function MovieDetail() {
             </div>
             <Link to={'/'}>
                 <p className={styles.volverLink}>Volver</p>
-            </Link>
-            </>
-        }
-        {!isLoading &&   
-            <div>
-                <h1>Loading...</h1>
-            </div>
-        }
+            </Link>         
         </>
     );
 }
