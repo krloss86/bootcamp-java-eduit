@@ -10,5 +10,13 @@ export function get(path) {
                 "Content-Type":'application/json;character=utf8'
             },    
         }
-    ).then(res => res.json());
+    ).then(res =>  {
+        if (res.status >= 200 && res.status <= 299) {
+            return res.json()
+          } else {
+            return [];
+          }
+    })
+    
+    
 }

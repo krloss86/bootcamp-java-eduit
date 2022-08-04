@@ -1,6 +1,5 @@
 import { BrowserRouter,Routes,Route, Link } from 'react-router-dom';
 import styles from './App.module.css';
-import { MovieGird } from './components/MovieGrid';
 import { MovieDetail } from './components/MovieDetail';
 import { Landing } from './components/Landing';
 
