@@ -1,0 +1,13 @@
+.movieCard {
+    list-style: none;
+}
+
+.movieCard:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+.movieImg {
+    border-radius: 15px;
+    width: 230px;
+    height: auto;
+}

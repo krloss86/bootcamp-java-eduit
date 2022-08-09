@@ -1,13 +1,13 @@
 import { BrowserRouter,Routes,Route, Link } from 'react-router-dom';
 import styles from './App.module.css';
-import { MovieDetail } from './components/MovieDetail';
-import { Landing } from './components/Landing';
+import { MovieDetail } from './components/movie/MovieDetail';
+import { LandingPage } from './components/landing/LandingPage';
 
 function App() {
   // console.log(styles);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/app-web'>
       <header>
         <Link to={'/'}>
           <div>
@@ -17,7 +17,7 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path='/' element={<Landing/>}/>
+          <Route path='/' element={<LandingPage/>}/>
           <Route path='/detail/:movieId' element={<MovieDetail/>}/>
         </Routes>
       </main>

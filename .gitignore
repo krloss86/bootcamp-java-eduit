@@ -89,3 +89,12 @@ local.properties
 
 # Codepro
 .codepro/
+node_modules
+/node_modules-/
+/package-lock.json
+
+/node.exe
+/npm
+/npm.cmd
+/node/
+
