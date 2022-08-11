@@ -15,6 +15,9 @@
           	Crear Producto
           </a>
           -->
+          <li class="nav-item">
+          	<a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/views/upload.jsp">Upload</a>
+       	</li>
           <a class="nav-link" href="<%=request.getContextPath()%>/controller/ListadoController">
           	Listado
           </a>

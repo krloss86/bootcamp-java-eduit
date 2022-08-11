@@ -44,7 +44,7 @@ public class CrearArticuloController extends BaseServlet{
 			articuloService.create(nuevo);
 			
 			//msj ok
-			super.setAttribute(AttributesEnum.EXITO, req, "Producto id"+nuevo.getId()+" OK");
+			super.setAttribute(AttributesEnum.EXITO, req, "ArticuloDTO id"+nuevo.getId()+" OK");
 		} catch (ServiceException e) {
 			super.setAttribute(AttributesEnum.ERROR_GENERAL, req, e.getMessage() + "-" + e.getCause().getMessage());
 			//msj error
