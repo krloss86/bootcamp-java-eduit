@@ -27,7 +27,7 @@ public class CargarController extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		ViewsEnum target = ViewsEnum.UPLOAD_PREVIEW;
+		ViewsEnum target = ViewsEnum.RESULTADOS_PREVIEW;//UPLOAD_PREVIEW;
 		
 		//bajar la lista de la sesion
 		Collection<ArticuloDTO> datos = (Collection<ArticuloDTO>)req.getSession().getAttribute(AttributesEnum.UPLOAD_PREVIEW_KEY.getValue());

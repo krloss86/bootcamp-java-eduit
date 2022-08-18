@@ -8,9 +8,9 @@ public class FormatoMain {
 		
 		FormatoEnum _enum =  FormatoEnum.getByValue(formato);
 		
-		IFormato action = ActionBuilder.getAction(_enum);
+		IExportable action = ActionBuilder.getAction(_enum);
 
-		action.doAction();
+		action.exportar(null);
 	}
 
 }

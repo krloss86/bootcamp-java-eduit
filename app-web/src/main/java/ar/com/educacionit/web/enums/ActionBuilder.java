@@ -5,18 +5,18 @@ import java.util.Map;
 
 public class ActionBuilder {
 
-	private static Map<FormatoEnum, IFormato> actionsMap = buildActionFormat(); 
+	private static Map<FormatoEnum, IExportable> actionsMap = buildActionFormat(); 
 	
-	public static IFormato getAction(FormatoEnum _enum) {//NULL
-		IFormato action = new DefaultAction();
+	public static IExportable getAction(FormatoEnum _enum) {//NULL
+		IExportable action = new DefaultAction();
 		if(actionsMap.containsKey(_enum)) {
 			action = actionsMap.get(_enum);
 		}
 		return action;		
 	}
 
-	private static Map<FormatoEnum, IFormato> buildActionFormat() {
-		Map<FormatoEnum, IFormato> map = new HashMap<>();
+	private static Map<FormatoEnum, IExportable> buildActionFormat() {
+		Map<FormatoEnum, IExportable> map = new HashMap<>();
 		map.put(FormatoEnum.CSV, new CSVAction());
 		map.put(FormatoEnum.PDF, new PDFAction());
 		map.put(FormatoEnum.XLSX, new XLSXAction());
