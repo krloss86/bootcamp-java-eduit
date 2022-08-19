@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase2 HTML</title>
+</head>
+<body>
+    <!--barra-->
+    <header>
+
+    </header>
+    <nav>
+
+    </nav>
+    <main>
+        <h1>
+            Clase 2 HTML - Tablas
+        </h1>
+        <section>
+            <h2>Alumnos</h2>
+            <table border="1" >
+                <!--fila1-->
+                <tr>
+                    <!--titulos de la tabla-->
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Apellido
+                    </th>
+                    <th>
+                        Edad
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        Carlos
+                    </td>
+                    <td>
+                        L&oacute;pez
+                    </td>
+                    <td>
+                        36
+                    </td>
+                </tr>
+                <!--fila2-->
+                <tr>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        Walter
+                    </td>
+                    <td>
+                        Barra
+                    </td>
+                    <td>
+                        36
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Input</h2>      
+            <label>Number</label><input type="number"> <br>
+
+            <input type="text"> <br>
+            <input type="radio" name="name1">
+            <input type="radio" name="name1">
+            <br>
+            <input type="checkbox" name="name2">
+            <input type="checkbox" name="name2">
+            <input type="checkbox" name="name2">
+            <br>
+            <input type="email"><!--validaciones -->
+            <input type="date"><br><br>
+            <input type="file"><br>
+            <input type="button" value="Click Me">
+            <br>
+            <select>
+                <option>opcion1</option>
+                <option>opcion2</option>
+            </select>
+        </section>
+
+        <!--fomularios-->
+        <section>
+            <h2>Formulario</h2> 
+            <!--los formulariios por defecto mandan los datos por GET-->
+            <form action="procesar-login.html"
+                method="get">
+                <label>Username</label>
+                <input type="text" name="usuario" >
+                <br>
+                <label>password</label>
+                <input type="password" name="password" >
+                <br>
+                <label>Email</label>
+                <input type="email" name="email" >
+                <br>
+                <select name="rangoedad" >
+                    <option></option>
+                    <option>18-25</option>
+                    <option>26-36</option>
+                    <option>+36</option>
+                </select>
+                <br>
+                <input type="datetime-local" >
+                <br>
+                <label>N&uacute;mero</label>
+                <input type="number" name="numero"  max="5" min="2">
+                <br>
+                <label>Radios</label>
+                <input type="radio" name="name1" value="1">
+                <input type="radio" name="name1" value="2">
+                <br>
+                <label>opciones</label>
+                <input type="checkbox" name="name2" value="op1">
+                <input type="checkbox" name="name2" value="op2" required>
+                <input type="checkbox" name="name2" value="op2">
+                <input type="submit" value="Login">
+            </form>
+        </section>
+        <section>
+            <fieldset>
+                <legend>Titulo</legend>
+                <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Username</label>
+                            </td>
+                            <td>
+                                <input type="text" placeholder="algo">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Password</label>
+                            </td>
+                            <td>
+                                <input type="password" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Rango</label>
+                            </td>
+                            <td>
+                                <select></select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </fieldset>
+        </section>
+
+        <section>
+            <h2>Iframe</h2>            
+            <iframe 
+                width="560" height="315" 
+                src="https://www.youtube.com/embed/rSXSqlzwyp4" 
+                title="YouTube video player"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+        </section>
+        
+        <section>
+        	<h1>Video</h1>
+        	<video src="http://video.com.ar/video.ogg"></video>
+        	
+        	<video width="320" height="240" autoplay>
+			  <source src="movie.mp4" type="video/mp4">
+			  <source src="movie.ogg" type="video/ogg">
+			  Your browser does not support the video tag.
+			</video>
+			
+			<audio controls>
+			  <source src="horse.ogg" type="audio/ogg">
+			  <source src="horse.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+			</audio>
+        </section>
+    </main>
+
+    <article>
+
+    </article>
+    <footer>
+
+    </footer>
+</body>
+</html>
