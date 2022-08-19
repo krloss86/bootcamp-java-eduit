@@ -33,6 +33,7 @@ public class UploadController extends BaseServlet {
 			super.setAttribute(AttributesEnum.ERROR_GENERAL, req, "Debe seleccionar un Archivo");
 			target = ViewsEnum.UPLOAD;
 			redirect(target, req, resp);
+			return;
 		}
 		
 		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -50,6 +51,7 @@ public class UploadController extends BaseServlet {
 			super.setAttribute(AttributesEnum.ERROR_GENERAL, req, "Ext de archivo incorrecto");
 			target = ViewsEnum.UPLOAD;
 			redirect(target, req, resp);
+			return;
 		}
 		
 		try {

@@ -5,5 +5,5 @@ import java.util.Collection;
 
 public interface IExportable {
 
-	public String (Collection<Serializable> datos);
+	public String exportar(Collection<Serializable> datos);
 }

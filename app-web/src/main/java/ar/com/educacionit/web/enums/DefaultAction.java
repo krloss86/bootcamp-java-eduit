@@ -5,9 +5,8 @@ import java.util.Collection;
 
 public class DefaultAction implements IExportable {
 
-	public void String(Collection<Serializable> datos) {
-		// TODO Auto-generated method stub
-		
+	public String exportar(Collection<Serializable> datos) {
+		return "";
 	}
 
 
