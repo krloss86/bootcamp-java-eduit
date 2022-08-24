@@ -75,8 +75,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <!-- <outputDirectory>src/main/webapp/BUILDED</outputDirectory> -->
-                            <outputDirectory>../app-web/src/main/webapp/build</outputDirectory>
+                            <outputDirectory>src/main/webapp</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/reactwebapp/build</directory>

@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter basename='/'>
       <header>
-        <Link to={'/app-web'}>
+        <Link to={'/'}>
           <div>
             <h1 className={styles.title}>Peliculas</h1>
           </div>
